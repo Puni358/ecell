@@ -31,10 +31,10 @@ const TestimonialDeck = ({ testimonials }: { testimonials: any[] }) => {
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="bg-[#050505] border border-white/5 p-6 rounded-lg group hover:border-[#39FF14]/40 transition-all"
+              className="bg-[#050505] border border-white/5 p-6 rounded-lg group hover:border-primary/40 transition-all"
             >
               <div className="flex items-center gap-2 mb-4 opacity-50 font-mono text-[9px]">
-                <Terminal size={10} className="text-[#39FF14]" />
+                <Terminal size={10} className="text-secondary" />
                 <span>UNIT_DATA_0{t.id}</span>
               </div>
 
@@ -43,16 +43,39 @@ const TestimonialDeck = ({ testimonials }: { testimonials: any[] }) => {
               </p>
 
               <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                <img
-                  src={t.image}
-                  alt=""
-                  className="h-8 w-8 rounded grayscale group-hover:grayscale-0"
-                />
-                <div className="text-left">
-                  <h4 className="text-[11px] font-bold uppercase text-white">
+                {t.image && typeof t.image === "string" && t.image.startsWith("http") ? (
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    onError={(e) => {
+                      // If image fails to load, hide image and show fallback
+                      (e.currentTarget as HTMLElement).style.display = "none";
+                      const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
+                    className="h-8 w-8 rounded-full object-cover grayscale group-hover:grayscale-0 border border-white/10 shrink-0"
+                  />
+                ) : null}
+                <div
+                  style={{
+                    display:
+                      t.image && typeof t.image === "string" && t.image.startsWith("http")
+                        ? "none"
+                        : "flex",
+                  }}
+                  className="h-8 w-8 rounded-full bg-zinc-900 border border-white/10 items-center justify-center shrink-0 text-primary font-mono text-[10px] font-bold"
+                >
+                  {t.name
+                    ?.split(" ")
+                    .map((n: string) => n[0])
+                    .slice(0, 2)
+                    .join("") || "U"}
+                </div>
+                <div className="text-left overflow-hidden">
+                  <h4 className="text-[11px] font-bold uppercase text-white truncate">
                     {t.name}
                   </h4>
-                  <p className="text-[8px] font-mono text-[#39FF14] tracking-widest">
+                  <p className="text-[8px] font-mono text-primary tracking-widest truncate">
                     {t.designation}
                   </p>
                 </div>
@@ -67,13 +90,13 @@ const TestimonialDeck = ({ testimonials }: { testimonials: any[] }) => {
         <div className="flex items-center gap-4">
           <button
             onClick={prev}
-            className="p-2 border border-white/10 hover:border-[#39FF14] text-zinc-500 hover:text-white transition-all"
+            className="p-2 border border-white/10 hover:border-primary text-zinc-500 hover:text-white transition-all"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={next}
-            className="p-2 border border-white/10 hover:border-[#39FF14] text-zinc-500 hover:text-white transition-all"
+            className="p-2 border border-white/10 hover:border-primary text-zinc-500 hover:text-white transition-all"
           >
             <ChevronRight size={16} />
           </button>
@@ -90,7 +113,7 @@ const TestimonialDeck = ({ testimonials }: { testimonials: any[] }) => {
           </div>
           <div className="h-1 bg-zinc-900 w-full overflow-hidden">
             <motion.div
-              className="h-full bg-[#39FF14]"
+              className="h-full bg-primary"
               initial={false}
               animate={{
                 width: `${((index + itemsPerPage) / testimonials.length) * 100}%`,

@@ -23,10 +23,10 @@ const EventCard = ({ event }: { event: any }) => {
       <div className="p-8 flex flex-col justify-between flex-grow relative overflow-hidden">
         <div>
           <div className="flex justify-between items-start mb-6">
-            <h3 className="text-3xl font-bold tracking-tighter leading-tight text-white group-hover:text-[#39FF14] transition-colors">
+            <h3 className="text-3xl font-bold tracking-tighter leading-tight text-white group-hover:text-primary transition-colors">
               {event.title}
             </h3>
-            <div className="p-2 rounded-full border border-white/10 group-hover:border-[#39FF14] group-hover:bg-[#39FF14] transition-all duration-300">
+            <div className="p-2 rounded-full border border-white/10 group-hover:border-primary group-hover:bg-primary transition-all duration-300">
               <ArrowRight
                 className="text-zinc-600 group-hover:text-black"
                 size={20}
@@ -41,11 +41,11 @@ const EventCard = ({ event }: { event: any }) => {
 
         <div className="pt-6 border-t border-white/5 flex flex-wrap gap-6">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-            <Calendar size={12} className="text-[#39FF14]" />
+            <Calendar size={12} className="text-primary" />
             {event.date}
           </div>
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-            <MapPin size={12} className="text-[#39FF14]" />
+            <MapPin size={12} className="text-primary" />
             {event.venue}
           </div>
         </div>

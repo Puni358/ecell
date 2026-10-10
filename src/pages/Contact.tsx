@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Terminal, Globe } from "lucide-react";
+import { Mail, MapPin, Terminal, Globe } from "lucide-react";
 import ContactForm from "../components/ContactForm";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-primary selection:text-black">
       {/* Background Dot matrix */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
@@ -22,7 +22,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex flex-col items-center gap-2 mb-6">
-              <Globe size={14} className="text-[#39FF14]" />
+              <Globe size={14} className="text-secondary" />
               <span className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold">
                 Contact E-Cell UVCE
               </span>
@@ -66,14 +66,14 @@ const Contact = () => {
             >
               <item.icon
                 size={24}
-                className="text-[#39FF14] mb-6 group-hover:scale-110 transition-transform"
+                className="text-primary mb-6 group-hover:scale-110 transition-transform"
               />
               <span className="text-[10px] uppercase tracking-[0.3em] text-gray-600 mb-2 font-bold">
                 {item.label}
               </span>
               <a
                 href={item.href}
-                className="text-lg font-medium hover:text-[#39FF14] transition-colors tracking-tight"
+                className="text-lg font-medium hover:text-primary transition-colors tracking-tight"
               >
                 {item.val}
               </a>
@@ -85,7 +85,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-40">
           <div className="space-y-8">
             <div className="flex items-center gap-4 mb-4">
-              <Terminal size={18} className="text-[#39FF14]" />
+              <Terminal size={18} className="text-secondary" />
               <h2 className="text-3xl font-bold tracking-tighter uppercase">
                 Send Us a Message
               </h2>
@@ -95,7 +95,7 @@ const Contact = () => {
 
           <div className="relative group">
             {/* Refined Glow Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#39FF14]/20 to-transparent blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
 
             {/* Container: Removed 'grayscale' and 'contrast-125' to restore natural colors */}
             <div className="relative h-full min-h-[450px] border border-white/10 rounded-2xl overflow-hidden transition-all duration-700">

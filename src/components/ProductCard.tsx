@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className="group relative flex flex-col bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-[#39FF14]/30"
+      className="group relative flex flex-col bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-primary/30"
     >
       {/* --- IMAGE SECTION --- */}
       <div className="relative aspect-[4/5] overflow-hidden bg-[#0A0A0A]">
@@ -32,7 +32,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Category Label - Technical Style */}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 border border-white/10 bg-black/60 backdrop-blur-md text-[9px] uppercase tracking-[0.2em] text-[#39FF14] font-bold">
+          <span className="px-3 py-1 border border-white/10 bg-black/60 backdrop-blur-md text-[9px] uppercase tracking-[0.2em] text-secondary font-bold">
             {product.category}
           </span>
         </div>
@@ -43,7 +43,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             href={product.orderLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#39FF14] text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+            className="bg-primary text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
           >
             Initiate_Order <ArrowUpRight size={14} />
           </a>
@@ -53,10 +53,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {/* --- INFO SECTION --- */}
       <div className="p-6 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-lg font-bold tracking-tighter text-white group-hover:text-[#39FF14] transition-colors">
+          <h3 className="text-lg font-bold tracking-tighter text-white group-hover:text-primary transition-colors">
             {product.productName}
           </h3>
-          <span className="text-sm font-mono text-[#39FF14] font-bold">
+          <span className="text-sm font-mono text-primary font-bold">
             {product.price}
           </span>
         </div>

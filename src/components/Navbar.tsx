@@ -21,12 +21,12 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 font-mono selection:bg-[#39FF14] selection:text-black">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/5 font-mono selection:bg-primary selection:text-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="p-2 border border-white/10 group-hover:border-[#39FF14] transition-all duration-500">
+            <div className="p-2 border border-white/10 group-hover:border-primary transition-all duration-500">
               <img
                 src={ecellLogo}
                 alt="Logo"
@@ -34,7 +34,7 @@ const Navbar = () => {
               />
             </div>
             <span className="text-xl font-bold tracking-tighter text-white uppercase italic leading-none">
-              E-Cell <span className="text-[#39FF14]">UVCE</span>
+              E-Cell <span className="text-primary">UVCE</span>
             </span>
           </Link>
 
@@ -59,7 +59,7 @@ const Navbar = () => {
                 {isActive(link.path) && (
                   <motion.div
                     layoutId="nav-dot"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#39FF14] rounded-full shadow-[0_0_8px_#39FF14]"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_rgba(255,107,0,0.8)]"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -69,7 +69,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden p-2 text-white hover:text-[#39FF14] transition-colors"
+            className="md:hidden p-2 text-white hover:text-primary transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,13 +94,13 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={`text-xs font-bold uppercase tracking-[0.3em] transition-all flex items-center justify-between ${
                     isActive(link.path)
-                      ? "text-[#39FF14]"
+                      ? "text-primary"
                       : "text-gray-500 hover:text-white"
                   }`}
                 >
                   {link.label}
                   {isActive(link.path) && (
-                    <div className="w-1.5 h-1.5 bg-[#39FF14] rounded-full shadow-[0_0_8px_#39FF14]" />
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_rgba(255,107,0,0.8)]" />
                   )}
                 </Link>
               ))}

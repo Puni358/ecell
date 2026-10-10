@@ -8,7 +8,7 @@ const ContactForm = () => {
   );
 
   const inputStyles =
-    "w-full bg-white/[0.03] border border-white/10 px-4 py-4 focus:outline-none focus:border-[#39FF14] focus:bg-white/[0.05] transition-all text-sm tracking-wide rounded-sm font-mono placeholder:text-gray-700";
+    "w-full bg-white/[0.03] border border-white/10 px-4 py-4 focus:outline-none focus:border-primary focus:bg-white/[0.05] transition-all text-sm tracking-wide rounded-sm font-mono placeholder:text-gray-700";
   const labelStyles =
     "block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-2 font-bold";
 
@@ -21,7 +21,7 @@ const ContactForm = () => {
             onClick={() => setActiveForm(type)}
             className={`flex-1 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500 ${
               activeForm === type
-                ? "bg-[#39FF14] text-black"
+                ? "bg-primary text-black"
                 : "text-gray-500 hover:text-white"
             }`}
           >
@@ -115,7 +115,7 @@ const ContactForm = () => {
         <motion.button
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full bg-[#39FF14] text-black py-4 rounded-sm font-bold text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 hover:shadow-[0_0_20px_rgba(57,255,20,0.4)] transition-all"
+          className="w-full bg-primary text-black py-4 rounded-sm font-bold text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition-all"
         >
           Send Message <Send size={14} />
         </motion.button>

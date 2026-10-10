@@ -22,7 +22,7 @@ const iconMap: Record<string, any> = {
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white border-t border-white/5 relative selection:bg-[#39FF14] selection:text-black">
+    <footer className="bg-black text-white border-t border-white/5 relative selection:bg-primary selection:text-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20 items-start">
           {/* Brand Identity */}
@@ -31,7 +31,7 @@ const Footer = () => {
               to="/"
               className="flex items-center space-x-2 sm:space-x-3 group"
             >
-              <div className="p-1.5 sm:p-2 border border-white/10 group-hover:border-[#39FF14] transition-all duration-500">
+              <div className="p-1.5 sm:p-2 border border-white/10 group-hover:border-primary transition-all duration-500">
                 <img
                   src={ecellLogo}
                   alt="E-Cell UVCE Logo"
@@ -41,7 +41,7 @@ const Footer = () => {
 
               <div className="flex flex-col leading-tight">
                 <span className="text-base sm:text-xl font-bold tracking-tighter text-white uppercase italic">
-                  Entrepreneurship <span className="text-[#39FF14]">Cell</span>
+                  Entrepreneurship <span className="text-primary">Cell</span>
                 </span>
                 <span className="text-[8px] sm:text-[10px] text-gray-400 uppercase tracking-widest">
                   University Visvesvaraya College of Engineering
@@ -58,7 +58,7 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-500 hover:text-[#39FF14] hover:bg-white/5 rounded-full transition-all duration-300"
+                    className="p-2 text-gray-500 hover:text-primary hover:bg-white/5 rounded-full transition-all duration-300"
                   >
                     {Icon && <Icon size={16} />}
                   </a>
@@ -87,7 +87,7 @@ const Footer = () => {
                     }
                     className="text-gray-500 hover:text-white flex items-center group transition-colors"
                   >
-                    <ChevronRight className="h-3 w-3 mr-1 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-[#39FF14] transition-all" />
+                    <ChevronRight className="h-3 w-3 mr-1 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-primary transition-all" />
                     {item}
                   </Link>
                 </li>
@@ -111,14 +111,14 @@ const Footer = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-500 hover:text-[#39FF14] transition-colors"
+                  className="text-gray-500 hover:text-primary transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
               <Link
                 to="/contact"
-                className="text-gray-500 hover:text-[#39FF14] transition-colors"
+                className="text-gray-500 hover:text-primary transition-colors"
               >
                 Contact Us
               </Link>

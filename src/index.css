@@ -2,10 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ecell-primary: #FF6B00;
+  --ecell-primary-hover: #FF8533;
+  --ecell-secondary: #F5A623;
+  --ecell-glow: rgba(255, 107, 0, 0.25);
+  --ecell-glow-sm: rgba(255, 107, 0, 0.15);
+  --ecell-surface-tint: rgba(255, 107, 0, 0.08);
+  --ecell-border-tint: rgba(255, 107, 0, 0.25);
+}
+
+::selection {
+  background-color: var(--ecell-primary);
+  color: #000000;
+}
+
 /* Subtle Custom Horizontal Scrollbar for Timeline */
 .timeline-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(57, 255, 20, 0.45) rgba(255, 255, 255, 0.05);
+  scrollbar-color: rgba(255, 107, 0, 0.5) rgba(255, 255, 255, 0.05);
 }
 
 .timeline-scrollbar::-webkit-scrollbar {
@@ -18,11 +33,11 @@
 }
 
 .timeline-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(57, 255, 20, 0.45);
+  background: rgba(255, 107, 0, 0.5);
   border-radius: 9999px;
   transition: background-color 0.2s ease;
 }
 
 .timeline-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(57, 255, 20, 0.8);
+  background: rgba(255, 107, 0, 0.85);
 }
