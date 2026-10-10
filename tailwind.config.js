@@ -40,14 +40,19 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: '#f26d1e',
-          light: '#f76c14',
-          dark: '#c1713d',
+          DEFAULT: 'var(--ecell-primary)',
+          hover: 'var(--ecell-primary-hover)',
+          light: '#FF8533',
+          dark: '#CC5500',
         },
         secondary: {
-          DEFAULT: '#ffde9c',
-          light: '#edb745',
-          dark: '#7d552b',
+          DEFAULT: 'var(--ecell-secondary)',
+          light: '#FFD166',
+          dark: '#D48806',
+        },
+        accent: {
+          orange: '#FF6B00',
+          gold: '#F5A623',
         },
       },
       fontFamily: {

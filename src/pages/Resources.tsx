@@ -25,7 +25,7 @@ const Blog = () => {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-primary selection:text-black">
       {/* Background Dot Matrix */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
@@ -43,7 +43,7 @@ const Blog = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <Layers size={14} className="text-[#39FF14]" />
+              <Layers size={14} className="text-secondary" />
               <span className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold">
                 Insight Archive
               </span>
@@ -54,13 +54,13 @@ const Blog = () => {
             </h1>
 
             <div className="relative max-w-xl group">
-              <Search className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-600 group-focus-within:text-[#39FF14] transition-colors" />
+              <Search className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-600 group-focus-within:text-primary transition-colors" />
               <input
                 type="text"
                 placeholder="Search perspectives..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-transparent border-b border-white/10 py-4 pl-8 focus:outline-none focus:border-[#39FF14] transition-all text-sm uppercase tracking-widest placeholder:text-gray-800"
+                className="w-full bg-transparent border-b border-white/10 py-4 pl-8 focus:outline-none focus:border-primary transition-all text-sm uppercase tracking-widest placeholder:text-gray-800"
               />
             </div>
           </motion.div>
@@ -87,7 +87,7 @@ const Blog = () => {
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Maximize2 size={24} className="text-[#39FF14]" />
+                    <Maximize2 size={24} className="text-primary" />
                   </div>
                 </div>
               )}
@@ -102,7 +102,7 @@ const Blog = () => {
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-[#39FF14] transition-colors">
+                <h2 className="text-2xl font-bold tracking-tight mb-4 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
 
@@ -113,7 +113,7 @@ const Blog = () => {
                 )}
 
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                  Read Entry <ArrowRight size={14} className="text-[#39FF14]" />
+                  Read Entry <ArrowRight size={14} className="text-primary" />
                 </div>
               </div>
             </motion.article>
@@ -137,13 +137,13 @@ const Blog = () => {
               >
                 <button
                   onClick={() => setSelectedPost(null)}
-                  className="absolute top-8 right-8 text-white/40 hover:text-[#39FF14] transition-colors"
+                  className="absolute top-8 right-8 text-white/40 hover:text-primary transition-colors"
                 >
                   <X size={32} />
                 </button>
 
                 <div className="max-w-3xl mx-auto">
-                  <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-[#39FF14] mb-6">
+                  <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-secondary mb-6">
                     <span>{selectedPost.date}</span>
                     <span className="w-1 h-1 rounded-full bg-white/20" />
                     <span>{selectedPost.author}</span>

@@ -3,7 +3,7 @@ import { Rocket } from "lucide-react";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black font-mono selection:bg-[#39FF14] selection:text-black">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black font-mono selection:bg-primary selection:text-black">
       {/* Container for Logo and Status */}
       <div className="relative flex flex-col items-center">
         {/* Pulsing Logo - The Core of the Brand */}
@@ -14,7 +14,7 @@ const LoadingSpinner = () => {
           className="mb-8"
         >
           <div className="p-4 border border-white/10 bg-white/[0.02]">
-            <Rocket className="h-10 w-10 text-[#39FF14]" />
+            <Rocket className="h-10 w-10 text-primary" />
           </div>
         </motion.div>
 
@@ -35,7 +35,7 @@ const LoadingSpinner = () => {
             <motion.span
               animate={{ opacity: [0, 1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
-              className="text-[#39FF14] font-bold"
+              className="text-primary font-bold"
             >
               _
             </motion.span>
@@ -52,7 +52,7 @@ const LoadingSpinner = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-[#39FF14] to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent"
           />
         </div>
       </div>

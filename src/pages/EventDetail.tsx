@@ -15,7 +15,7 @@ const EventDetail = () => {
 
   if (!event)
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white font-sans selection:bg-[#39FF14] selection:text-black">
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white font-sans selection:bg-primary selection:text-black">
         <div
           className="fixed inset-0 pointer-events-none opacity-[0.12]"
           style={{
@@ -26,8 +26,8 @@ const EventDetail = () => {
         <div className="relative z-10 text-center">
           <div className="flex items-center gap-2 mb-6 justify-center">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39FF14]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             <p className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold font-mono">
               ERROR_404
@@ -41,7 +41,7 @@ const EventDetail = () => {
           </p>
           <Link
             to="/events"
-            className="inline-block px-8 py-4 bg-[#39FF14] text-black font-black uppercase tracking-[0.2em] text-sm rounded-2xl hover:bg-white transition-all"
+            className="inline-block px-8 py-4 bg-primary text-black font-black uppercase tracking-[0.2em] text-sm rounded-2xl hover:bg-white transition-all"
           >
             Back to Events
           </Link>
@@ -50,7 +50,7 @@ const EventDetail = () => {
     );
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 font-sans selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-black text-white pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 font-sans selection:bg-primary selection:text-black">
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
         style={{
@@ -63,7 +63,7 @@ const EventDetail = () => {
         {/* Navigation */}
         <Link
           to="/events"
-          className="inline-flex items-center gap-2 text-zinc-500 hover:text-[#39FF14] transition-colors mb-16 group"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-primary transition-colors mb-16 group"
         >
           <ArrowLeft
             size={14}
@@ -84,20 +84,20 @@ const EventDetail = () => {
             >
               <div className="flex items-center gap-3 mb-8">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39FF14]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
                 <span
                   className={`px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-full transition-all ${
                     event.section === "upcoming"
-                      ? "bg-[#39FF14] text-black shadow-[0_0_20px_rgba(57,255,20,0.3)]"
+                      ? "bg-primary text-black shadow-[0_0_20px_rgba(255,107,0,0.3)]"
                       : "bg-zinc-800 text-zinc-400"
                   }`}
                 >
                   {event.section}
                 </span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-10 leading-[1.1] uppercase bg-gradient-to-r from-white via-[#39FF14] to-white bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-10 leading-[1.1] uppercase bg-gradient-to-r from-white via-primary to-white bg-clip-text text-transparent">
                 {event.title}
               </h1>
               {/* Image with Placeholder Handling */}
@@ -124,7 +124,7 @@ const EventDetail = () => {
               </div>
               {/* Description Section */}
               <div className="space-y-8 md:space-y-12">
-                <div className="border-l-3 border-[#39FF14] pl-4 sm:pl-6 md:pl-8">
+                <div className="border-l-3 border-primary pl-4 sm:pl-6 md:pl-8">
                   <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-zinc-100 leading-relaxed tracking-wide">
                     {event.description}
                   </p>
@@ -146,12 +146,12 @@ const EventDetail = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="p-6 sm:p-8 bg-zinc-950 border border-white/5 rounded-xl sm:rounded-2xl md:rounded-[2rem] backdrop-blur-xl relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#39FF14]/5 blur-3xl rounded-full" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
 
               <div className="space-y-10 relative z-10">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-[10px] text-[#39FF14] uppercase tracking-[0.3em] mb-4 font-mono font-bold">
+                    <p className="text-[10px] text-primary uppercase tracking-[0.3em] mb-4 font-mono font-bold">
                       Date
                     </p>
                     <div className="flex items-center gap-3 sm:gap-4">
@@ -173,7 +173,7 @@ const EventDetail = () => {
                 </div>
 
                 <div>
-                  <p className="text-[10px] text-[#39FF14] uppercase tracking-[0.3em] mb-4 font-mono font-bold">
+                  <p className="text-[10px] text-primary uppercase tracking-[0.3em] mb-4 font-mono font-bold">
                     Venue
                   </p>
                   <div className="flex items-center gap-3 sm:gap-4">
@@ -189,7 +189,7 @@ const EventDetail = () => {
                     href={event.registrationLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="block w-full bg-[#39FF14] text-black text-center py-4 sm:py-5 rounded-lg sm:rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] sm:text-[11px] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(57,255,20,0.15)]"
+                    className="block w-full bg-primary text-black text-center py-4 sm:py-5 rounded-lg sm:rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] sm:text-[11px] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(255,107,0,0.15)]"
                   >
                     Register for Event
                   </a>

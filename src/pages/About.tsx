@@ -343,7 +343,7 @@ const About = () => {
   return (
     <div
       ref={pageContainerRef}
-      className="min-h-screen bg-black text-white pt-24 sm:pt-32 pb-16 font-sans selection:bg-[#39FF14] selection:text-black"
+      className="min-h-screen bg-black text-white pt-24 sm:pt-32 pb-16 font-sans selection:bg-primary selection:text-black"
     >
       {/* Background Matrix */}
       <div
@@ -364,8 +364,8 @@ const About = () => {
               className="inline-flex items-center justify-center gap-2 mb-4 sm:mb-6 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 backdrop-blur-sm"
             >
               <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39FF14]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               <span className="relative top-[1px] text-[10px] uppercase tracking-[0.35em] text-gray-300 font-bold font-mono pl-[0.35em] leading-none select-none">
                 Who we are
@@ -399,9 +399,9 @@ const About = () => {
           <div
             className="bento-reveal-card md:col-span-6 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#39FF14]/5 blur-[100px]" />
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 blur-[100px]" />
             <div className="relative z-10 flex flex-col items-center text-center">
-              <span className="text-[#39FF14] text-[10px] font-bold uppercase tracking-[0.5em] mb-2 sm:mb-4 font-mono">
+              <span className="text-secondary text-[10px] font-bold uppercase tracking-[0.5em] mb-2 sm:mb-4 font-mono">
                 Established 1917
               </span>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-widest text-white mb-4 sm:mb-6">
@@ -446,13 +446,13 @@ const About = () => {
                     onClick={() => setIsAboutExpanded((prev) => !prev)}
                     aria-expanded={isAboutExpanded}
                     aria-controls="about-uvce-extended-text"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-[#39FF14]/40 text-[11px] font-mono text-[#39FF14] hover:text-white transition-all min-h-[36px] active:scale-95"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-primary/40 text-[11px] font-mono text-primary hover:text-white transition-all min-h-[36px] active:scale-95"
                   >
                     <span>{isAboutExpanded ? "Show less" : "Read more"}</span>
                     {isAboutExpanded ? (
-                      <ChevronUp size={13} className="text-[#39FF14]" />
+                      <ChevronUp size={13} className="text-primary" />
                     ) : (
-                      <ChevronDown size={13} className="text-[#39FF14]" />
+                      <ChevronDown size={13} className="text-primary" />
                     )}
                   </button>
                 </div>
@@ -465,8 +465,8 @@ const About = () => {
             className="bento-reveal-card md:col-span-3 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-4 sm:mb-5">
-                <Eye className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
+              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-primary/50 transition-colors mb-4 sm:mb-5">
+                <Eye className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
               <h2 className="text-base sm:text-xl font-bold uppercase tracking-widest text-white mb-3 sm:mb-6">
                 Our Vision
@@ -486,8 +486,8 @@ const About = () => {
             className="bento-reveal-card md:col-span-3 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-4 sm:mb-5">
-                <Target className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
+              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-primary/50 transition-colors mb-4 sm:mb-5">
+                <Target className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
               <h2 className="text-base sm:text-xl font-bold uppercase tracking-widest text-white mb-3 sm:mb-6">
                 Our Mission
@@ -506,16 +506,16 @@ const About = () => {
             id="history-section"
             className="bento-reveal-card md:col-span-6 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300 scroll-mt-24"
           >
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#39FF14]/5 blur-[100px] group-hover:bg-[#39FF14]/10 transition-all pointer-events-none" />
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 blur-[100px] group-hover:bg-primary/10 transition-all pointer-events-none" />
 
             <div className="relative z-10">
               {/* Header */}
               <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
-                <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-3 sm:mb-5">
-                  <History className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
+                <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-primary/50 transition-colors mb-3 sm:mb-5">
+                  <History className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div className="flex items-center gap-2 mb-1.5 font-mono">
-                  <Clock size={12} className="text-[#39FF14]" />
+                  <Clock size={12} className="text-secondary" />
                   <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 font-bold">
                     Chronicle & Milestones
                   </span>
@@ -585,13 +585,13 @@ const About = () => {
                     onClick={() => setIsHistoryExpanded((prev) => !prev)}
                     aria-expanded={isHistoryExpanded}
                     aria-controls="history-extended-content"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-[#39FF14]/40 hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-[#39FF14] hover:text-white transition-all min-h-[40px] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-95"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-primary/40 hover:bg-primary/10 text-xs font-mono uppercase tracking-widest text-primary hover:text-white transition-all min-h-[40px] focus:outline-none focus:ring-1 focus:ring-primary active:scale-95"
                   >
                     <span>{isHistoryExpanded ? "Show less" : "Read more"}</span>
                     {isHistoryExpanded ? (
-                      <ChevronUp size={14} className="text-[#39FF14]" />
+                      <ChevronUp size={14} className="text-primary" />
                     ) : (
-                      <ChevronDown size={14} className="text-[#39FF14]" />
+                      <ChevronDown size={14} className="text-primary" />
                     )}
                   </button>
                 </div>
@@ -603,11 +603,11 @@ const About = () => {
                   {/* Timeline Header & Scroll Hint */}
                   <div className="flex items-center justify-between mb-4 px-1">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                       Milestones ({historyMilestones.length})
                     </span>
                     {canScrollTimelineRight && (
-                      <span className="text-[10px] font-mono text-[#39FF14] flex items-center gap-1 animate-pulse">
+                      <span className="text-[10px] font-mono text-secondary flex items-center gap-1 animate-pulse">
                         Scroll to explore →
                       </span>
                     )}
@@ -619,12 +619,12 @@ const About = () => {
                     onScroll={updateTimelineScrollHint}
                     tabIndex={0}
                     aria-label="E-Cell UVCE Historical Milestones Timeline"
-                    className="timeline-scrollbar overflow-x-auto overflow-y-hidden pb-4 pt-3 px-1 -mx-2 sm:-mx-4 px-2 sm:px-4 touch-pan-x focus:outline-none focus:ring-1 focus:ring-[#39FF14]/50 rounded-xl"
+                    className="timeline-scrollbar overflow-x-auto overflow-y-hidden pb-4 pt-3 px-1 -mx-2 sm:-mx-4 px-2 sm:px-4 touch-pan-x focus:outline-none focus:ring-1 focus:ring-primary/50 rounded-xl"
                   >
                     {/* Connecting track line wrapper */}
                     <div className="relative inline-flex gap-4 sm:gap-6 min-w-full pb-2">
                       {/* Horizontal spine connection line behind cards */}
-                      <div className="absolute top-[22px] left-6 right-6 h-[2px] bg-gradient-to-r from-[#39FF14]/50 via-white/15 to-[#39FF14]/50 pointer-events-none" />
+                      <div className="absolute top-[22px] left-6 right-6 h-[2px] bg-gradient-to-r from-primary/50 via-secondary/20 to-primary/50 pointer-events-none" />
 
                       {historyMilestones.map((milestone) => (
                         <div
@@ -633,10 +633,10 @@ const About = () => {
                         >
                           {/* Node Bullet anchored on horizontal track line */}
                           <div className="flex items-center gap-2 mb-2.5 pl-3">
-                            <div className="w-4 h-4 rounded-full border-2 border-[#39FF14] bg-black flex items-center justify-center shadow-[0_0_10px_rgba(57,255,20,0.5)] z-10 shrink-0">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+                            <div className="w-4 h-4 rounded-full border-2 border-primary bg-black flex items-center justify-center shadow-[0_0_10px_rgba(255,107,0,0.5)] z-10 shrink-0">
+                              <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
                             </div>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-secondary/15 text-secondary border border-secondary/30">
                               {milestone.year}
                             </span>
                             {milestone.tag && (
@@ -668,9 +668,9 @@ const About = () => {
                               milestoneTriggerRef.current = e.currentTarget;
                               setActiveModalMilestone(milestone);
                             }}
-                            className="w-full text-left rounded-xl bg-zinc-950/80 border border-white/10 hover:border-[#39FF14]/60 p-3.5 sm:p-4 transition-all duration-300 hover:bg-zinc-900/60 hover:shadow-[0_0_20px_rgba(57,255,20,0.12)] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-[0.99] cursor-pointer flex flex-col"
+                            className="w-full text-left rounded-xl bg-zinc-950/80 border border-white/10 hover:border-primary/60 p-3.5 sm:p-4 transition-all duration-300 hover:bg-zinc-900/60 hover:shadow-[0_0_20px_rgba(255,107,0,0.15)] focus:outline-none focus:ring-1 focus:ring-primary active:scale-[0.99] cursor-pointer flex flex-col"
                           >
-                            <h3 className="text-sm font-bold text-white tracking-tight break-words mb-1.5 group-hover/card:text-[#39FF14] transition-colors leading-snug">
+                            <h3 className="text-sm font-bold text-white tracking-tight break-words mb-1.5 group-hover/card:text-primary transition-colors leading-snug">
                               {milestone.title}
                             </h3>
                             <p className="text-xs text-zinc-400 font-light leading-relaxed mb-2.5">
@@ -690,7 +690,7 @@ const About = () => {
                             )}
 
                             {/* Action Affordance */}
-                            <div className="mt-auto pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover/card:text-[#39FF14] transition-colors">
+                            <div className="mt-auto pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover/card:text-primary transition-colors">
                               <span>Learn more</span>
                               <span>→</span>
                             </div>
@@ -706,14 +706,24 @@ const About = () => {
         </div>
 
         {/* --- 3. PROGRESSIVE DISCLOSURE TEAM DIRECTORY --- */}
-        <section id="team-section" className="py-16 sm:py-24 border-t border-white/5 scroll-mt-24">
+        <section id="team-section" className="relative py-16 sm:py-24 border-t border-white/5 scroll-mt-24">
+          {/* Subtle Orange/Gold Section Marker & Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">
+            <div className="w-12 sm:w-20 h-px bg-gradient-to-r from-transparent to-primary/40" />
+            <div className="h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_8px_var(--ecell-primary)]" />
+            <div className="w-12 sm:w-20 h-px bg-gradient-to-l from-transparent to-primary/40" />
+          </div>
+
           {/* Section Heading */}
           <div className="flex flex-col items-center text-center mb-10 sm:mb-14 gap-3">
-            <span className="text-[#39FF14] text-[10px] font-bold uppercase tracking-[0.5em] font-mono">
-              Directory & Leadership
-            </span>
+            <div className="flex items-center gap-2 mb-0.5">
+              <Users size={13} className="text-secondary" />
+              <span className="text-primary text-[10px] font-bold uppercase tracking-[0.5em] font-mono">
+                Directory & Leadership
+              </span>
+            </div>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-white">
-              The <span className="text-zinc-500 italic font-light">Team.</span>
+              The <span className="text-primary italic font-light">Team.</span>
             </h2>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-lg font-mono">
               Meet the council driving entrepreneurial initiatives across campus.
@@ -739,7 +749,7 @@ const About = () => {
                     aria-selected={isActive}
                     aria-controls="department-directory"
                     onClick={() => setSelectedYear(team.year)}
-                    className={`relative min-h-[44px] min-w-[120px] sm:min-w-[140px] px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-1 focus:ring-[#39FF14] ${
+                    className={`relative min-h-[44px] min-w-[120px] sm:min-w-[140px] px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-1 focus:ring-primary ${
                       isActive ? "text-black" : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -747,7 +757,7 @@ const About = () => {
                       <motion.div
                         layoutId="activeYearPill"
                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                        className="absolute inset-0 bg-[#39FF14] rounded-full shadow-[0_0_20px_rgba(57,255,20,0.4)]"
+                        className="absolute inset-0 bg-primary rounded-full shadow-[0_0_20px_rgba(255,107,0,0.4)]"
                       />
                     )}
                     <span className="relative z-10">{team.year} Council</span>
@@ -764,7 +774,7 @@ const About = () => {
           <div id="department-directory" className="mb-10 sm:mb-12">
             <div className="flex items-center justify-between mb-3 sm:mb-4 px-1">
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                 Select Department
               </span>
               <span className="text-[10px] font-mono text-zinc-500">
@@ -796,15 +806,15 @@ const About = () => {
                     aria-selected={isSelected}
                     aria-controls={`dept-panel-${dept.key}`}
                     onClick={() => setSelectedDeptKey(dept.key)}
-                    className={`shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-full border text-xs font-semibold whitespace-nowrap transition-all duration-200 min-h-[44px] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-95 ${
+                    className={`shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-full border text-xs font-semibold whitespace-nowrap transition-all duration-200 min-h-[44px] focus:outline-none focus:ring-1 focus:ring-primary active:scale-95 ${
                       isSelected
-                        ? "bg-[#39FF14] text-black border-[#39FF14] shadow-[0_0_18px_rgba(57,255,20,0.35)] font-bold"
+                        ? "bg-primary text-black border-primary shadow-[0_0_18px_rgba(255,107,0,0.35)] font-bold"
                         : "bg-zinc-950/80 text-zinc-300 border-white/10 hover:border-white/20 hover:text-white"
                     }`}
                   >
                     <DeptIcon
                       size={14}
-                      className={isSelected ? "text-black" : "text-[#39FF14]"}
+                      className={isSelected ? "text-black" : "text-primary"}
                     />
                     <span>{dept.label}</span>
                     <span
@@ -838,9 +848,9 @@ const About = () => {
                     aria-selected={isSelected}
                     aria-controls={`dept-panel-${dept.key}`}
                     onClick={() => setSelectedDeptKey(dept.key)}
-                    className={`group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-200 flex items-center justify-between gap-3 min-h-[54px] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-[0.99] ${
+                    className={`group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-200 flex items-center justify-between gap-3 min-h-[54px] focus:outline-none focus:ring-1 focus:ring-primary active:scale-[0.99] ${
                       isSelected
-                        ? "bg-zinc-900/90 border-[#39FF14] shadow-[0_0_20px_rgba(57,255,20,0.15)]"
+                        ? "bg-zinc-900/90 border-primary shadow-[0_0_20px_rgba(255,107,0,0.15)]"
                         : "bg-zinc-950/50 border-white/5 hover:border-white/20 hover:bg-zinc-900/30"
                     }`}
                   >
@@ -848,7 +858,7 @@ const About = () => {
                       <div
                         className={`p-2 rounded-lg shrink-0 transition-colors ${
                           isSelected
-                            ? "bg-[#39FF14] text-black"
+                            ? "bg-primary text-black"
                             : "bg-white/5 text-zinc-400 group-hover:text-white"
                         }`}
                       >
@@ -873,7 +883,7 @@ const About = () => {
                     {/* Active Indicator Pip */}
                     <div className="shrink-0 flex items-center">
                       {isSelected ? (
-                        <span className="w-2 h-2 rounded-full bg-[#39FF14] shadow-[0_0_8px_#39FF14]" />
+                        <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(255,107,0,0.8)]" />
                       ) : (
                         <span className="text-[9px] font-mono text-zinc-600 group-hover:text-zinc-400">
                           0{idx + 1}
@@ -899,7 +909,7 @@ const About = () => {
                 {/* Department Banner & Step Controller (Compact on mobile) */}
                 <div className="bg-zinc-900/30 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-[#39FF14]/10 border border-[#39FF14]/30 text-[#39FF14] shrink-0">
+                      <div className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-primary/10 border border-primary/30 text-primary shrink-0">
                         <activeDept.icon size={20} className="sm:w-[22px] sm:h-[22px]" />
                       </div>
                       <div>
@@ -907,7 +917,7 @@ const About = () => {
                           <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-white leading-tight">
                             {activeDept.label}
                           </h3>
-                          <span className="text-[10px] font-mono bg-[#39FF14]/20 text-[#39FF14] px-2 py-0.5 rounded-full font-bold">
+                          <span className="text-[10px] font-mono bg-secondary/20 text-secondary px-2 py-0.5 rounded-full font-bold">
                             {activeDept.count}
                           </span>
                         </div>
@@ -926,14 +936,14 @@ const About = () => {
                         <button
                           onClick={goToPrevDept}
                           aria-label="Previous Department"
-                          className="p-2 rounded-lg border border-white/10 bg-zinc-950 text-zinc-400 hover:text-white hover:border-[#39FF14] transition-colors focus:outline-none focus:ring-1 focus:ring-[#39FF14]"
+                          className="p-2 rounded-lg border border-white/10 bg-zinc-950 text-zinc-400 hover:text-white hover:border-primary transition-colors focus:outline-none focus:ring-1 focus:ring-primary"
                         >
                           <ChevronLeft size={16} />
                         </button>
                         <button
                           onClick={goToNextDept}
                           aria-label="Next Department"
-                          className="p-2 rounded-lg border border-white/10 bg-zinc-950 text-zinc-400 hover:text-white hover:border-[#39FF14] transition-colors focus:outline-none focus:ring-1 focus:ring-[#39FF14]"
+                          className="p-2 rounded-lg border border-white/10 bg-zinc-950 text-zinc-400 hover:text-white hover:border-primary transition-colors focus:outline-none focus:ring-1 focus:ring-primary"
                         >
                           <ChevronRight size={16} />
                         </button>
@@ -946,7 +956,7 @@ const About = () => {
                     {leads.length > 0 && (
                       <div>
                         <div className="flex items-center gap-3 mb-4">
-                          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#39FF14] font-bold">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-secondary font-bold">
                             Leadership
                           </span>
                           <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
@@ -973,11 +983,12 @@ const About = () => {
                     {/* 3B. REGULAR MEMBERS / EXECUTIVES (Responsive Grid: 2-col on mobile up to 5-col) */}
                     {regularMembers.length > 0 && (
                       <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-400 font-bold">
+                        <div className="flex items-center gap-2.5 sm:gap-3 mb-4">
+                          <span className="h-1.5 w-1.5 rounded-full bg-secondary shrink-0 self-center" />
+                          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary font-bold leading-none inline-flex items-center">
                             Members & Executives
                           </span>
-                          <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
+                          <div className="h-[1px] flex-grow bg-gradient-to-r from-primary/30 via-secondary/20 to-transparent self-center" />
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
                           {regularMembers.map((member, index) => (
@@ -1012,7 +1023,7 @@ const About = () => {
             aria-modal="true"
             aria-labelledby="modal-member-name"
             onClick={() => setActiveModalMember(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-[#39FF14] selection:text-black cursor-pointer"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-primary selection:text-black cursor-pointer"
           >
             {/* Modal Backdrop */}
             <motion.div
@@ -1034,7 +1045,7 @@ const About = () => {
               {/* Top Action Bar */}
               <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#39FF14] bg-[#39FF14]/10 border border-[#39FF14]/20 px-2.5 py-1 rounded-full font-bold">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-2.5 py-1 rounded-full font-bold">
                     {activeModalMember.deptLabel}
                   </span>
                   <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
@@ -1044,7 +1055,7 @@ const About = () => {
                 <button
                   onClick={() => setActiveModalMember(null)}
                   aria-label="Close Profile"
-                  className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#39FF14] min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px] min-w-[44px] flex items-center justify-center"
                 >
                   <X size={20} />
                 </button>
@@ -1065,7 +1076,7 @@ const About = () => {
                     />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center text-zinc-600">
-                      <User size={48} className="text-[#39FF14]/50" />
+                      <User size={48} className="text-primary/50" />
                     </div>
                   )}
                 </div>
@@ -1076,7 +1087,7 @@ const About = () => {
                 >
                   {activeModalMember.member.name}
                 </h3>
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#39FF14] mt-1 font-semibold">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-primary mt-1 font-semibold">
                   {activeModalMember.member.post}
                 </p>
                 <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500 mt-2">
@@ -1111,15 +1122,15 @@ const About = () => {
                             href={linkedinUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-[#39FF14]/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
+                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-primary/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
                           >
                             <span className="flex items-center gap-2.5">
-                              <Linkedin size={16} className="text-[#39FF14]" />
+                              <Linkedin size={16} className="text-primary" />
                               <span>Connect on LinkedIn</span>
                             </span>
                             <ExternalLink
                               size={14}
-                              className="text-zinc-600 group-hover:text-[#39FF14] transition-colors"
+                              className="text-zinc-600 group-hover:text-primary transition-colors"
                             />
                           </a>
                         )}
@@ -1129,15 +1140,15 @@ const About = () => {
                             href={instagramUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-[#39FF14]/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
+                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-primary/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
                           >
                             <span className="flex items-center gap-2.5">
-                              <Instagram size={16} className="text-[#39FF14]" />
+                              <Instagram size={16} className="text-primary" />
                               <span>Follow on Instagram</span>
                             </span>
                             <ExternalLink
                               size={14}
-                              className="text-zinc-600 group-hover:text-[#39FF14] transition-colors"
+                              className="text-zinc-600 group-hover:text-primary transition-colors"
                             />
                           </a>
                         )}
@@ -1147,15 +1158,15 @@ const About = () => {
                             href={githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-[#39FF14]/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
+                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-primary/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
                           >
                             <span className="flex items-center gap-2.5">
-                              <Github size={16} className="text-[#39FF14]" />
+                              <Github size={16} className="text-primary" />
                               <span>View GitHub Profile</span>
                             </span>
                             <ExternalLink
                               size={14}
-                              className="text-zinc-600 group-hover:text-[#39FF14] transition-colors"
+                              className="text-zinc-600 group-hover:text-primary transition-colors"
                             />
                           </a>
                         )}
@@ -1163,17 +1174,17 @@ const About = () => {
                         {emailUrl && (
                           <a
                             href={emailUrl}
-                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-[#39FF14]/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
+                            className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-primary/50 hover:bg-zinc-900 text-xs text-zinc-300 hover:text-white transition-all group"
                           >
                             <span className="flex items-center gap-2.5">
-                              <Mail size={16} className="text-[#39FF14]" />
+                              <Mail size={16} className="text-primary" />
                               <span className="truncate max-w-[200px]">
                                 {displayEmail || "Send Direct Email"}
                               </span>
                             </span>
                             <ExternalLink
                               size={14}
-                              className="text-zinc-600 group-hover:text-[#39FF14] transition-colors"
+                              className="text-zinc-600 group-hover:text-primary transition-colors"
                             />
                           </a>
                         )}
@@ -1190,7 +1201,7 @@ const About = () => {
               {/* Close Button */}
               <button
                 onClick={() => setActiveModalMember(null)}
-                className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#39FF14] hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
+                className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary hover:bg-primary/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
               >
                 Close Profile
               </button>
@@ -1210,7 +1221,7 @@ const About = () => {
               setActiveModalMilestone(null);
               if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
             }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-[#39FF14] selection:text-black cursor-pointer"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-primary selection:text-black cursor-pointer"
           >
             {/* Modal Backdrop */}
             <motion.div
@@ -1236,7 +1247,7 @@ const About = () => {
               {/* Top Action Bar */}
               <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#39FF14] bg-[#39FF14]/10 border border-[#39FF14]/25 px-2.5 py-1 rounded-full font-bold">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/25 px-2.5 py-1 rounded-full font-bold">
                     {activeModalMilestone.year}
                   </span>
                   {activeModalMilestone.tag && (
@@ -1251,7 +1262,7 @@ const About = () => {
                     if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
                   }}
                   aria-label="Close Milestone Details"
-                  className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#39FF14] min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px] min-w-[44px] flex items-center justify-center"
                 >
                   <X size={20} />
                 </button>
@@ -1278,7 +1289,7 @@ const About = () => {
               >
                 {activeModalMilestone.title}
               </h3>
-              <p className="text-xs font-mono uppercase tracking-widest text-[#39FF14] mt-1 font-semibold">
+              <p className="text-xs font-mono uppercase tracking-widest text-primary mt-1 font-semibold">
                 Historical Milestone
               </p>
 
@@ -1298,7 +1309,7 @@ const About = () => {
                   setActiveModalMilestone(null);
                   if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
                 }}
-                className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#39FF14] hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
+                className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary hover:bg-primary/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
               >
                 Close Milestone
               </button>

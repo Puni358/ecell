@@ -68,8 +68,8 @@ const Events = () => {
       <div className="flex flex-col items-center text-center mb-16 md:mb-24 pt-12 sm:pt-16 md:pt-20 px-4 sm:px-0 hover:opacity-80 transition-opacity">
         <div className="flex items-center gap-2 mb-6">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39FF14]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <span className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold font-mono">
             {subtitle}
@@ -85,11 +85,11 @@ const Events = () => {
           >
             <ChevronDown
               size={24}
-              className="text-[#39FF14] flex-shrink-0 mt-4"
+              className="text-primary flex-shrink-0 mt-4"
             />
           </motion.div>
         </div>
-        <div className="h-[1px] w-24 bg-[#39FF14] opacity-50 mt-8" />
+        <div className="h-[1px] w-24 bg-primary opacity-50 mt-8" />
       </div>
     </motion.button>
   );
@@ -128,7 +128,7 @@ const Events = () => {
         onClick={onClick}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="w-full mt-12 py-4 px-8 border-2 border-[#39FF14] text-[#39FF14] font-bold uppercase tracking-[0.2em] text-sm rounded-xl hover:bg-[#39FF14] hover:text-black transition-all"
+        className="w-full mt-12 py-4 px-8 border-2 border-primary text-primary font-bold uppercase tracking-[0.2em] text-sm rounded-xl hover:bg-primary hover:text-black transition-all"
       >
         View More
       </motion.button>
@@ -136,7 +136,7 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 font-sans selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-black text-white pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 font-sans selection:bg-primary selection:text-black">
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
         style={{
@@ -154,13 +154,6 @@ const Events = () => {
         >
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-2 mb-6">
-              {/* <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39FF14] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39FF14]"></span>
-              </span> */}
-              {/* <span className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold font-mono">
-                Programs & Engagements.
-              </span> */}
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[9rem] font-bold tracking-tighter leading-[0.85] mb-8">
               Events & Initiatives <br />
@@ -173,7 +166,7 @@ const Events = () => {
                 placeholder="SEARCH ALL INITIATIVES..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-zinc-900/30 border border-white/5 rounded-full py-3 sm:py-4 pl-12 pr-6 text-[9px] sm:text-[10px] font-mono tracking-widest focus:border-[#39FF14]/30 focus:outline-none transition-all"
+                className="w-full bg-zinc-900/30 border border-white/5 rounded-full py-3 sm:py-4 pl-12 pr-6 text-[9px] sm:text-[10px] font-mono tracking-widest focus:border-primary/50 focus:outline-none transition-all"
               />
             </div>
           </div>
