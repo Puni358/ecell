@@ -16,6 +16,9 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  Clock,
   User,
   ExternalLink,
   Linkedin,
@@ -25,6 +28,7 @@ import {
   LucideIcon,
 } from "lucide-react";
 import { teamData } from "../data/team";
+import { historyMilestones, HistoryMilestone } from "../data/history";
 import TeamCard from "../components/TeamCard";
 import { TeamMember, sanitizeSocialLinks } from "../utils/teamUtils";
 
@@ -116,11 +120,38 @@ const About = () => {
     departments[0]?.key || "presidents"
   );
 
+  // Accessible disclosure states for compact reading experience
+  const [isAboutExpanded, setIsAboutExpanded] = useState<boolean>(false);
+  const [isHistoryExpanded, setIsHistoryExpanded] = useState<boolean>(false);
+  const timelineScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollTimelineRight, setCanScrollTimelineRight] = useState<boolean>(true);
+
+  // Check whether more timeline cards are available to scroll horizontally
+  const updateTimelineScrollHint = useCallback(() => {
+    if (timelineScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = timelineScrollRef.current;
+      setCanScrollTimelineRight(scrollLeft + clientWidth < scrollWidth - 12);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isHistoryExpanded) {
+      const timer = setTimeout(() => {
+        updateTimelineScrollHint();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isHistoryExpanded, updateTimelineScrollHint]);
+
   // Active Member Modal State for progressive disclosure
   const [activeModalMember, setActiveModalMember] = useState<{
     member: TeamMember;
     deptLabel: string;
   } | null>(null);
+
+  // Active Milestone Modal State for timeline progressive disclosure
+  const [activeModalMilestone, setActiveModalMilestone] = useState<HistoryMilestone | null>(null);
+  const milestoneTriggerRef = useRef<HTMLElement | null>(null);
 
   // Sync / validate department selection when changing year
   useEffect(() => {
@@ -132,14 +163,22 @@ const About = () => {
     }
   }, [selectedYear, departments, selectedDeptKey]);
 
-  // Modal escape key handler and body scroll lock
+  // Modal escape key handler and body scroll lock for both modals
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setActiveModalMember(null);
+        if (activeModalMilestone) {
+          setActiveModalMilestone(null);
+          if (milestoneTriggerRef.current) {
+            milestoneTriggerRef.current.focus();
+          }
+        }
+        if (activeModalMember) {
+          setActiveModalMember(null);
+        }
       }
     };
-    if (activeModalMember) {
+    if (activeModalMember || activeModalMilestone) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
     } else {
@@ -149,7 +188,7 @@ const About = () => {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeModalMember]);
+  }, [activeModalMember, activeModalMilestone]);
 
   // Resolve currently active department
   const activeDeptIndex = departments.findIndex((d) => d.key === selectedDeptKey);
@@ -351,25 +390,27 @@ const About = () => {
           </div>
         </section>
 
-        {/* --- 2. INSTITUTIONAL & E-CELL CONTEXT (BENTO GRID) --- */}
+        {/* --- 2. INSTITUTIONAL & E-CELL CONTEXT (BENTO GRID & TIMELINE) --- */}
         <div
           ref={bentoGridRef}
-          className="grid grid-cols-1 md:grid-cols-6 gap-4 sm:gap-6 mb-28 sm:mb-36"
+          className="grid grid-cols-1 md:grid-cols-6 gap-4 sm:gap-6 mb-20 sm:mb-28"
         >
-          {/* Card 1: About UVCE (Full Width Top) */}
+          {/* Card 1: About UVCE (Full Width Top with Mobile Read More) */}
           <div
-            className="bento-reveal-card md:col-span-6 relative p-6 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
+            className="bento-reveal-card md:col-span-6 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#39FF14]/5 blur-[100px]" />
             <div className="relative z-10 flex flex-col items-center text-center">
-              <span className="text-[#39FF14] text-[10px] font-bold uppercase tracking-[0.5em] mb-3 sm:mb-4 font-mono">
+              <span className="text-[#39FF14] text-[10px] font-bold uppercase tracking-[0.5em] mb-2 sm:mb-4 font-mono">
                 Established 1917
               </span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-widest text-white mb-6">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-widest text-white mb-4 sm:mb-6">
                 About{" "}
                 <span className="text-zinc-500 italic font-light">UVCE.</span>
               </h2>
-              <p className="text-zinc-400 leading-relaxed font-light text-sm sm:text-base md:text-lg max-w-4xl break-words">
+
+              {/* Desktop / Full view (sm:block) */}
+              <p className="hidden sm:block text-zinc-400 leading-relaxed font-light text-sm sm:text-base md:text-lg max-w-4xl break-words">
                 The{" "}
                 <b className="text-zinc-200">
                   University Visvesvaraya College of Engineering
@@ -386,18 +427,48 @@ const About = () => {
                 delivering high-quality technical excellence and fostering the
                 next generation of global engineers.
               </p>
+
+              {/* Mobile concise preview with accessible Read More (sm:hidden) */}
+              <div className="block sm:hidden text-left w-full">
+                <p className="text-zinc-300 leading-relaxed font-light text-xs sm:text-sm">
+                  The <b className="text-white font-medium">University Visvesvaraya College of Engineering</b>, founded in 1917 by <b className="text-white font-medium">Bharat Ratna Sir M Visvesvaraya</b>, is Karnataka's 1st and India's 5th engineering institution—pioneering technical excellence for over a century.
+                </p>
+
+                {isAboutExpanded && (
+                  <p className="mt-2.5 text-zinc-400 leading-relaxed font-light text-xs pt-2.5 border-t border-white/5 animate-fadeIn">
+                    Today, it remains a premier institution offering 8 undergraduate and 24 postgraduate programs, dedicated to fostering high-quality technical capability and the next generation of global innovators and venture builders.
+                  </p>
+                )}
+
+                <div className="flex justify-center mt-3.5">
+                  <button
+                    type="button"
+                    onClick={() => setIsAboutExpanded((prev) => !prev)}
+                    aria-expanded={isAboutExpanded}
+                    aria-controls="about-uvce-extended-text"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-[#39FF14]/40 text-[11px] font-mono text-[#39FF14] hover:text-white transition-all min-h-[36px] active:scale-95"
+                  >
+                    <span>{isAboutExpanded ? "Show less" : "Read more"}</span>
+                    {isAboutExpanded ? (
+                      <ChevronUp size={13} className="text-[#39FF14]" />
+                    ) : (
+                      <ChevronDown size={13} className="text-[#39FF14]" />
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Card 2: Our Vision (Left Side) */}
           <div
-            className="bento-reveal-card md:col-span-3 relative p-6 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
+            className="bento-reveal-card md:col-span-3 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-5">
+              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-4 sm:mb-5">
                 <Eye className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
               </div>
-              <h2 className="text-lg sm:text-xl font-bold uppercase tracking-widest text-white mb-4 sm:mb-6">
+              <h2 className="text-base sm:text-xl font-bold uppercase tracking-widest text-white mb-3 sm:mb-6">
                 Our Vision
               </h2>
               <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
@@ -405,22 +476,20 @@ const About = () => {
                 empowered with resources, mentorship, and networking
                 opportunities to transform their ideas into impactful ventures.
                 Through inclusive programs and a culture of innovation, we
-                strive to cultivate a new generation of visionary leaders
-                dedicated to driving positive change and creating a more
-                prosperous future.
+                strive to cultivate visionary leaders driving positive change.
               </p>
             </div>
           </div>
 
           {/* Card 3: Our Mission (Right Side) */}
           <div
-            className="bento-reveal-card md:col-span-3 relative p-6 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
+            className="bento-reveal-card md:col-span-3 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-5">
+              <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-4 sm:mb-5">
                 <Target className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
               </div>
-              <h2 className="text-lg sm:text-xl font-bold uppercase tracking-widest text-white mb-4 sm:mb-6">
+              <h2 className="text-base sm:text-xl font-bold uppercase tracking-widest text-white mb-3 sm:mb-6">
                 Our Mission
               </h2>
               <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
@@ -432,65 +501,206 @@ const About = () => {
             </div>
           </div>
 
-          {/* Card 4: Legacy & History (Full Width Bottom) */}
+          {/* Card 4: Collapsible History Section with Horizontal Timeline (Full Width Bottom) */}
           <div
-            className="bento-reveal-card md:col-span-6 relative p-6 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300"
+            id="history-section"
+            className="bento-reveal-card md:col-span-6 relative p-5 sm:p-8 md:p-12 bg-zinc-900/20 border border-white/5 rounded-2xl sm:rounded-3xl overflow-hidden group hover:bg-zinc-900/40 transition-colors duration-300 scroll-mt-24"
           >
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#39FF14]/5 blur-[100px] group-hover:bg-[#39FF14]/10 transition-all" />
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#39FF14]/5 blur-[100px] group-hover:bg-[#39FF14]/10 transition-all pointer-events-none" />
 
             <div className="relative z-10">
-              <div className="flex flex-col items-center text-center mb-8 sm:mb-10">
-                <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-4 sm:mb-6">
+              {/* Header */}
+              <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
+                <div className="p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#39FF14]/50 transition-colors mb-3 sm:mb-5">
                   <History className="h-5 w-5 sm:h-6 sm:w-6 text-[#39FF14]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-widest text-white">
-                  History
+                <div className="flex items-center gap-2 mb-1.5 font-mono">
+                  <Clock size={12} className="text-[#39FF14]" />
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 font-bold">
+                    Chronicle & Milestones
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-3xl font-bold uppercase tracking-widest text-white">
+                  History <span className="text-zinc-500 italic font-light">& Impact.</span>
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left">
-                <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
+              {/* History Text Content: Paragraph 1 visible initially; Paragraphs 2 & 3 revealed on Read More */}
+              <div className="p-4 sm:p-6 rounded-2xl bg-black/40 border border-white/5 mb-6 text-left">
+                {/* Paragraph 1: Always visible */}
+                <p className="text-zinc-300 sm:text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
                   The Entrepreneurship Cell of UVCE, founded in{" "}
-                  <b className="text-zinc-200 font-medium">
+                  <b className="text-white sm:text-zinc-200 font-medium">
                     2014 by Tejas Narayan
                   </b>
                   , stands tall as a student-run body with the goal of fostering
                   an{" "}
-                  <b className="text-zinc-300 font-medium">
+                  <b className="text-white sm:text-zinc-300 font-medium">
                     entrepreneurial culture
                   </b>
                   . In 2019, the club was re-organized with significant{" "}
-                  <b className="text-zinc-300 font-medium">
+                  <b className="text-white sm:text-zinc-300 font-medium">
                     support from the alumni
                   </b>
                   .
                 </p>
 
-                <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
-                  Through workshops, seminars, and flagship events, we guide
-                  students from{" "}
-                  <b className="text-zinc-300 font-medium">
-                    ideation to execution
-                  </b>
-                  . The E-Cell envisions nurturing the{" "}
-                  <b className="text-zinc-300 font-medium">
-                    innovative potential
-                  </b>{" "}
-                  of every student, invigorated to bring them one step closer to
-                  their entrepreneurial vision.
-                </p>
+                {/* Paragraphs 2 & 3: Revealed when isHistoryExpanded is true */}
+                {isHistoryExpanded && (
+                  <div
+                    id="history-extended-content"
+                    className="mt-4 pt-4 border-t border-white/5 space-y-4 animate-fadeIn"
+                  >
+                    <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
+                      Through workshops, seminars, and flagship events, we guide
+                      students from{" "}
+                      <b className="text-zinc-300 font-medium">
+                        ideation to execution
+                      </b>
+                      . The E-Cell envisions nurturing the{" "}
+                      <b className="text-zinc-300 font-medium">
+                        innovative potential
+                      </b>{" "}
+                      of every student, invigorated to bring them one step closer to
+                      their entrepreneurial vision.
+                    </p>
 
-                <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
-                  From networking and business modelling to{" "}
-                  <b className="text-zinc-300 font-medium">investor pitches</b>,
-                  E-Cell strives to provide a platform to holistically develop,
-                  including{" "}
-                  <b className="text-zinc-300 font-medium">
-                    direct interactions with the finance world
-                  </b>{" "}
-                  to expand the horizon of opportunities.
-                </p>
+                    <p className="text-zinc-400 leading-relaxed font-light text-xs sm:text-sm md:text-base">
+                      From networking and business modelling to{" "}
+                      <b className="text-zinc-300 font-medium">investor pitches</b>,
+                      E-Cell strives to provide a platform to holistically develop,
+                      including{" "}
+                      <b className="text-zinc-300 font-medium">
+                        direct interactions with the finance world
+                      </b>{" "}
+                      to expand the horizon of opportunities.
+                    </p>
+                  </div>
+                )}
+
+                {/* Read More / Show Less Button (matching About card's control) */}
+                <div className="flex justify-center mt-5">
+                  <button
+                    type="button"
+                    onClick={() => setIsHistoryExpanded((prev) => !prev)}
+                    aria-expanded={isHistoryExpanded}
+                    aria-controls="history-extended-content"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-[#39FF14]/40 hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-[#39FF14] hover:text-white transition-all min-h-[40px] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-95"
+                  >
+                    <span>{isHistoryExpanded ? "Show less" : "Read more"}</span>
+                    {isHistoryExpanded ? (
+                      <ChevronUp size={14} className="text-[#39FF14]" />
+                    ) : (
+                      <ChevronDown size={14} className="text-[#39FF14]" />
+                    )}
+                  </button>
+                </div>
               </div>
+
+              {/* Horizontal Timeline: Revealed underneath paragraphs when isHistoryExpanded is true */}
+              {isHistoryExpanded && (
+                <div className="pt-4 border-t border-white/10 animate-fadeIn">
+                  {/* Timeline Header & Scroll Hint */}
+                  <div className="flex items-center justify-between mb-4 px-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+                      Milestones ({historyMilestones.length})
+                    </span>
+                    {canScrollTimelineRight && (
+                      <span className="text-[10px] font-mono text-[#39FF14] flex items-center gap-1 animate-pulse">
+                        Scroll to explore →
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Horizontal Scrollable Timeline Container */}
+                  <div
+                    ref={timelineScrollRef}
+                    onScroll={updateTimelineScrollHint}
+                    tabIndex={0}
+                    aria-label="E-Cell UVCE Historical Milestones Timeline"
+                    className="timeline-scrollbar overflow-x-auto overflow-y-hidden pb-4 pt-3 px-1 -mx-2 sm:-mx-4 px-2 sm:px-4 touch-pan-x focus:outline-none focus:ring-1 focus:ring-[#39FF14]/50 rounded-xl"
+                  >
+                    {/* Connecting track line wrapper */}
+                    <div className="relative inline-flex gap-4 sm:gap-6 min-w-full pb-2">
+                      {/* Horizontal spine connection line behind cards */}
+                      <div className="absolute top-[22px] left-6 right-6 h-[2px] bg-gradient-to-r from-[#39FF14]/50 via-white/15 to-[#39FF14]/50 pointer-events-none" />
+
+                      {historyMilestones.map((milestone) => (
+                        <div
+                          key={milestone.id}
+                          className="w-[260px] sm:w-[280px] shrink-0 flex flex-col group/card relative"
+                        >
+                          {/* Node Bullet anchored on horizontal track line */}
+                          <div className="flex items-center gap-2 mb-2.5 pl-3">
+                            <div className="w-4 h-4 rounded-full border-2 border-[#39FF14] bg-black flex items-center justify-center shadow-[0_0_10px_rgba(57,255,20,0.5)] z-10 shrink-0">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+                            </div>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30">
+                              {milestone.year}
+                            </span>
+                            {milestone.tag && (
+                              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider truncate">
+                                // {milestone.tag}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Entire Milestone Card as an Interactive, Accessible Button */}
+                          <button
+                            type="button"
+                            data-milestone-card={milestone.id}
+                            aria-haspopup="dialog"
+                            aria-label={`View details for ${milestone.year}: ${milestone.title}`}
+                            onMouseDown={(e) => {
+                              (e.currentTarget as any)._dragStartPos = { x: e.clientX, y: e.clientY };
+                            }}
+                            onTouchStart={(e) => {
+                              const t = e.touches[0];
+                              (e.currentTarget as any)._dragStartPos = { x: t.clientX, y: t.clientY };
+                            }}
+                            onClick={(e) => {
+                              const start = (e.currentTarget as any)._dragStartPos;
+                              if (start) {
+                                const dist = Math.hypot(e.clientX - start.x, e.clientY - start.y);
+                                if (dist > 8) return; // Ignore drag/swipe gestures
+                              }
+                              milestoneTriggerRef.current = e.currentTarget;
+                              setActiveModalMilestone(milestone);
+                            }}
+                            className="w-full text-left rounded-xl bg-zinc-950/80 border border-white/10 hover:border-[#39FF14]/60 p-3.5 sm:p-4 transition-all duration-300 hover:bg-zinc-900/60 hover:shadow-[0_0_20px_rgba(57,255,20,0.12)] focus:outline-none focus:ring-1 focus:ring-[#39FF14] active:scale-[0.99] cursor-pointer flex flex-col"
+                          >
+                            <h3 className="text-sm font-bold text-white tracking-tight break-words mb-1.5 group-hover/card:text-[#39FF14] transition-colors leading-snug">
+                              {milestone.title}
+                            </h3>
+                            <p className="text-xs text-zinc-400 font-light leading-relaxed mb-2.5">
+                              {milestone.shortSummary}
+                            </p>
+
+                            {/* Archive visual if available (compact, consistent aspect ratio) */}
+                            {milestone.image && (
+                              <div className="rounded-lg overflow-hidden border border-white/10 bg-black/60 aspect-[16/9] w-full shrink-0 mb-2.5">
+                                <img
+                                  src={milestone.image}
+                                  alt={`${milestone.title} documentation`}
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                                  loading="lazy"
+                                />
+                              </div>
+                            )}
+
+                            {/* Action Affordance */}
+                            <div className="mt-auto pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover/card:text-[#39FF14] transition-colors">
+                              <span>Learn more</span>
+                              <span>→</span>
+                            </div>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -801,14 +1011,14 @@ const About = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-member-name"
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-[#39FF14] selection:text-black"
+            onClick={() => setActiveModalMember(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-[#39FF14] selection:text-black cursor-pointer"
           >
             {/* Modal Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setActiveModalMember(null)}
               className="fixed inset-0 bg-black/85 backdrop-blur-md"
             />
 
@@ -819,7 +1029,7 @@ const About = () => {
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative z-10 w-full max-w-md bg-zinc-950 border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(0,0,0,0.9)]"
+              className="relative z-10 w-full max-w-md bg-zinc-950 border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(0,0,0,0.9)] cursor-default"
             >
               {/* Top Action Bar */}
               <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
@@ -983,6 +1193,114 @@ const About = () => {
                 className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#39FF14] hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
               >
                 Close Profile
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- STEP 5: MILESTONE DETAILS MODAL --- */}
+      <AnimatePresence>
+        {activeModalMilestone && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-milestone-title"
+            onClick={() => {
+              setActiveModalMilestone(null);
+              if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
+            }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 selection:bg-[#39FF14] selection:text-black cursor-pointer"
+          >
+            {/* Modal Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setActiveModalMilestone(null);
+                if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
+              }}
+              className="fixed inset-0 bg-black/85 backdrop-blur-md"
+            />
+
+            {/* Modal Window */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative z-10 w-full max-w-lg bg-zinc-950 border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(0,0,0,0.9)] text-left"
+            >
+              {/* Top Action Bar */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#39FF14] bg-[#39FF14]/10 border border-[#39FF14]/25 px-2.5 py-1 rounded-full font-bold">
+                    {activeModalMilestone.year}
+                  </span>
+                  {activeModalMilestone.tag && (
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                      // {activeModalMilestone.tag}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    setActiveModalMilestone(null);
+                    if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
+                  }}
+                  aria-label="Close Milestone Details"
+                  className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#39FF14] min-h-[44px] min-w-[44px] flex items-center justify-center"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Milestone Image if available */}
+              {activeModalMilestone.image && (
+                <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-zinc-900 mb-6 aspect-[16/9] shadow-lg relative">
+                  <img
+                    src={activeModalMilestone.image}
+                    alt={`${activeModalMilestone.title} archive documentation`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-black/80 backdrop-blur-sm text-[10px] font-mono text-zinc-300 border border-white/10">
+                    Official Archive Visual • {activeModalMilestone.year}
+                  </div>
+                </div>
+              )}
+
+              {/* Milestone Title & Summary */}
+              <h3
+                id="modal-milestone-title"
+                className="text-xl sm:text-2xl font-bold tracking-tight text-white break-words"
+              >
+                {activeModalMilestone.title}
+              </h3>
+              <p className="text-xs font-mono uppercase tracking-widest text-[#39FF14] mt-1 font-semibold">
+                Historical Milestone
+              </p>
+
+              {/* Full Detailed Narrative */}
+              <div className="mt-5 pt-5 border-t border-white/5 space-y-3.5">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block">
+                  Archive Description
+                </span>
+                <p className="text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
+                  {activeModalMilestone.fullDescription}
+                </p>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setActiveModalMilestone(null);
+                  if (milestoneTriggerRef.current) milestoneTriggerRef.current.focus();
+                }}
+                className="w-full mt-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#39FF14] hover:bg-[#39FF14]/10 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white transition-all min-h-[44px]"
+              >
+                Close Milestone
               </button>
             </motion.div>
           </div>

@@ -11,3 +11,4 @@ export * from './startups';
 export * from './stats';
 export * from './team';
 export * from './testimonials';
+export * from './history';
