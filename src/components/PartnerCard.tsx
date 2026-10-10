@@ -31,8 +31,8 @@ const PartnerCard = ({ partner }: PartnerCardProps) => {
       />
 
       {/* Optional: Technical corner accents that appear on hover */}
-      <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-[#39FF14]/0 group-hover:border-[#39FF14]/50 transition-all duration-500" />
-      <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-[#39FF14]/0 group-hover:border-[#39FF14]/50 transition-all duration-500" />
+      <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-primary/0 group-hover:border-primary/50 transition-all duration-500" />
+      <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-primary/0 group-hover:border-primary/50 transition-all duration-500" />
     </motion.a>
   );
 };

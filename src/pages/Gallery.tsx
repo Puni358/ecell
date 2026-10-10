@@ -33,7 +33,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-24 selection:bg-[#39FF14] selection:text-black font-sans">
+    <div className="min-h-screen bg-black text-white pt-32 pb-24 selection:bg-primary selection:text-black font-sans">
       {/* --- SUBTLE DOT BACKGROUND --- */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
@@ -51,7 +51,7 @@ const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <Camera size={14} className="text-[#39FF14]" />
+              <Camera size={14} className="text-secondary" />
               <span className="text-[10px] uppercase tracking-[0.4em] text-gray-500 font-bold">
                 Archives
               </span>
@@ -70,7 +70,7 @@ const Gallery = () => {
                 onClick={() => setSelectedEvent(event)}
                 className={`px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 relative ${
                   selectedEvent === event
-                    ? "text-[#39FF14]"
+                    ? "text-primary"
                     : "text-gray-500 hover:text-white"
                 }`}
               >
@@ -78,7 +78,7 @@ const Gallery = () => {
                 {selectedEvent === event && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#39FF14]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                   />
                 )}
               </button>
@@ -114,7 +114,7 @@ const Gallery = () => {
                   <div className="overflow-hidden">
                     <motion.p
                       variants={captionVariants}
-                      className="text-[10px] font-bold text-[#39FF14] uppercase tracking-widest mb-2"
+                      className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2"
                     >
                       {image.event}
                     </motion.p>
@@ -126,7 +126,7 @@ const Gallery = () => {
                     </motion.p>
                   </div>
                   <Maximize2
-                    className="absolute top-8 right-8 text-[#39FF14] opacity-0 group-hover:opacity-100 transition-all"
+                    className="absolute top-8 right-8 text-primary opacity-0 group-hover:opacity-100 transition-all"
                     size={18}
                   />
                 </div>
@@ -146,7 +146,7 @@ const Gallery = () => {
             >
               <button
                 onClick={() => setLightboxImage(null)}
-                className="absolute top-10 right-10 text-white/40 hover:text-[#39FF14] transition-colors z-[110]"
+                className="absolute top-10 right-10 text-white/40 hover:text-primary transition-colors z-[110]"
               >
                 <X size={32} />
               </button>
@@ -176,7 +176,7 @@ const Gallery = () => {
                   alt="Full view"
                 />
                 <div className="mt-12 text-center">
-                  <span className="text-[10px] font-bold text-[#39FF14] uppercase tracking-[0.5em] mb-4 block animate-pulse">
+                  <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.5em] mb-4 block animate-pulse">
                     {galleryImages[lightboxImage].event}
                   </span>
                   <h2 className="text-3xl font-bold tracking-tighter text-white">

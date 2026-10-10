@@ -18,7 +18,7 @@ const Merchandise = () => {
       : merchandise.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-black text-white pt-32 pb-16 font-sans selection:bg-primary selection:text-black">
       {/* Background Dot matrix */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.12]"
@@ -36,7 +36,7 @@ const Merchandise = () => {
           className="mb-20"
         >
           <div className="flex items-center gap-2 mb-6">
-            <ShoppingBag size={14} className="text-[#39FF14]" />
+            <ShoppingBag size={14} className="text-secondary" />
             <span className="text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold">
               The Gear
             </span>
@@ -53,7 +53,7 @@ const Merchandise = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 relative ${
                   selectedCategory === category
-                    ? "text-[#39FF14]"
+                    ? "text-primary"
                     : "text-gray-500 hover:text-white"
                 }`}
               >
@@ -61,7 +61,7 @@ const Merchandise = () => {
                 {selectedCategory === category && (
                   <motion.div
                     layoutId="merchTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#39FF14]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                   />
                 )}
               </button>
@@ -105,7 +105,7 @@ const Merchandise = () => {
           </div>
           <a
             href="mailto:ecell@uvce.ac.in"
-            className="px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-[#39FF14] transition-all flex items-center gap-3"
+            className="px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-primary transition-all flex items-center gap-3"
           >
             Request Quote <Mail size={16} />
           </a>
